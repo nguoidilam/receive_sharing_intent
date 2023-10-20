@@ -154,7 +154,7 @@ public class SwiftReceiveSharingIntentPlugin: NSObject, FlutterPlugin, FlutterSt
                         guard let path = getAbsolutePath(for: $0.path) else {
                             return nil
                         }
-                        return SharedMediaFile.init(path: $0.path, thumbnail: nil, duration: nil, type: $0.type)
+                        return SharedMediaFile.init(path: path, thumbnail: nil, duration: nil, type: $0.type)
                     }
                     latestMedia = sharedMediaFiles
                     if(setInitialData) {
@@ -210,7 +210,7 @@ public class SwiftReceiveSharingIntentPlugin: NSObject, FlutterPlugin, FlutterSt
     
     private func getAbsolutePath(for identifier: String) -> String? {
         if (identifier.starts(with: "file://") || identifier.starts(with: "/var/mobile/Media") || identifier.starts(with: "/private/var/mobile")) {
-            return identifier.replacingOccurrences(of: "file://", with: "")
+            return identifier
         }
         let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: [identifier], options: .none).firstObject
         if(phAsset == nil) {
