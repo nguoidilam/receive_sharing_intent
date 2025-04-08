@@ -231,9 +231,9 @@ public class SharedMediaFile: Codable {
 public enum SharedMediaType: String, Codable, CaseIterable {
     case image
     case video
+    case file
     case text
 //     case audio
-    case file
     case url
 
     public var toUTTypeIdentifier: String {
@@ -243,12 +243,12 @@ public enum SharedMediaType: String, Codable, CaseIterable {
                 return UTType.image.identifier
             case .video:
                 return UTType.movie.identifier
+            case .file:
+                return UTType.fileURL.identifier
             case .text:
                 return UTType.text.identifier
     //         case .audio:
     //             return UTType.audio.identifier
-            case .file:
-                return UTType.fileURL.identifier
             case .url:
                 return UTType.url.identifier
             }
